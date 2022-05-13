@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  c7engine:
+    container_name: c7engine
+    image: registry.camunda.cloud/cambpm-ee/camunda-bpm-platform-ee:run-7.17.1
+    environment:
+      - logging.level.root=info
+      - camunda.bpm.run.example.enabled=false
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: "curl --fail http://localhost:8080 || exit 1"
+      interval: 8s
+      retries: 3
+      timeout: 3s
+  resttaskworker:
+    container_name: c7-rest-taskworker
+    image: rob2universe/c7-rest-taskworker
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - camunda.bpm.client.base-url=http://c7engine:8080/engine-rest
+      - logging.level.root=info
+      - topic=rest
+    depends_on:
+      c7engine:
+        condition: service_healthy
+
