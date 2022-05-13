@@ -1,0 +1,19 @@
+camunda.bpm.client:
+  base-url: http://localhost:8080/engine-rest # the URL pointing to the Camunda Platform Runtime REST API
+  worker-id: restWorker
+  lock-duration: 5000 # defines how many milliseconds the External Tasks are locked until they can be fetched again
+  subscriptions:
+    rest: # topic name of the External Service Task
+      variable-names: [ headers, method, payload, url ]
+      include-extension-properties: false
+      #process-definition-key:
+      max-tasks: 5
+      async-response-timeout: 20
+
+spring:
+  main:
+    web-application-type: none
+
+
+
+
