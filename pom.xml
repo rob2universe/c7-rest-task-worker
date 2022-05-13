@@ -54,21 +54,6 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>2.6.7</version>
       </plugin>
-      <!-- create executable jar -->
-      <!--            <plugin>
-                      <groupId>org.apache.maven.plugins</groupId>
-                      <artifactId>maven-jar-plugin</artifactId>
-                      <version>3.2.0</version>
-                      <configuration>
-                          <archive>
-                              <manifest>
-                                  <addClasspath>true</addClasspath>
-                                  <mainClass>com.camunda.example.Application</mainClass>
-                                  <classpathPrefix>lib/</classpathPrefix>
-                              </manifest>
-                          </archive>
-                      </configuration>
-                  </plugin>-->
     </plugins>
   </build>
 </project>
